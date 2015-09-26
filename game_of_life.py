@@ -37,8 +37,8 @@ class GameOfLife(object):
         for neighbour_x in range(x-1, x+2):
             for neighbour_y in range(y-1, y+2):
                 if (x, y) != (neighbour_x, neighbour_y):
-                    neighbour_x, neighbour_y = normalize_coordinates(neighbour_x, neighbour_y)
-                    alive_neighbours += grid[neighbour_x][neighbour_y]
+                    norm_neighbour_x, norm_neighbour_y = normalize_coordinates(neighbour_x, neighbour_y)
+                    alive_neighbours += grid[norm_neighbour_x][norm_neighbour_y]
 
         return alive_neighbours
 
