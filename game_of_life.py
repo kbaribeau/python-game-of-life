@@ -1,4 +1,7 @@
-class Gol:
+# Implementation of Conway's Game of Life
+# https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life
+
+class GameOfLife:
     def will_be_alive_in_next_generation(self, is_cell_alive, num_alive_neighbours):
         if is_cell_alive:
             return num_alive_neighbours == 2 or num_alive_neighbours == 3

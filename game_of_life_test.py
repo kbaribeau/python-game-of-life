@@ -1,8 +1,9 @@
 import unittest
-from gol import Gol
+from game_of_life import GameOfLife
+
 
 class TestGameOfLife(unittest.TestCase):
-    gol = Gol()
+    gol = GameOfLife()
 
     #Live Cells
     def test_live_cell_with_zero_live_neighbours_dies(self):
@@ -60,8 +61,9 @@ class TestGameOfLife(unittest.TestCase):
     def test_dead_cell_with_three_live_neighbours_stays_dead(self):
         self.assertFalse(self.gol.will_be_alive_in_next_generation(False, 8))
 
+
 class LiveNeighbourCounterTests(unittest.TestCase):
-    gol = Gol()
+    gol = GameOfLife()
 
     def test_dead_grid(self):
         grid = [[0,0,0],
@@ -90,6 +92,7 @@ class LiveNeighbourCounterTests(unittest.TestCase):
         self.assertEquals(8, self.gol.count_neighbours(grid, (2,0)))
         self.assertEquals(8, self.gol.count_neighbours(grid, (2,1)))
         self.assertEquals(8, self.gol.count_neighbours(grid, (2,2)))
+
 
 if __name__ == '__main__':
     unittest.main()
