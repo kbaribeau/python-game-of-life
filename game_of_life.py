@@ -26,10 +26,20 @@ class GameOfLife(object):
             """
             max_x = len(grid[0])
             max_y = len(grid)
+
+            # Account for right and bottom edge-wrapping
             if x == max_x:
                 x = 0
             if y == max_y:
                 y = 0
+
+            # Account for left and top edge-wrapping (e.g., when a coordinate is already a negative number)
+            if x == -1:
+                x = max_x - 1
+            if y == -1:
+                y = max_y - 1
+
+            print x, y
             return x, y
 
         x, y = coordinates
@@ -38,17 +48,22 @@ class GameOfLife(object):
             for neighbour_y in range(y-1, y+2):
                 if (x, y) != (neighbour_x, neighbour_y):
                     norm_neighbour_x, norm_neighbour_y = normalize_coordinates(neighbour_x, neighbour_y)
-                    alive_neighbours += grid[norm_neighbour_x][norm_neighbour_y]
+                    alive_neighbours += grid[norm_neighbour_y][norm_neighbour_x]
+
 
         return alive_neighbours
 
-# Fix problem with 1x1 grid neighbour counting before worrying about this
-#     def determine_next_grid(self, input_grid):
-#         max_x = len(input_grid[0])
-#         max_y = len(input_grid)
-#         output_grid = [[0 for output_x in range(max_x)] for output_y in range(max_y)]
-#         for x in range(0, max_x):
-#             for y in range(0, max_y):
-#                 num_alive_neighbours = self.count_alive_neighbours(input_grid, (x, y))
-#                 is_alive = self.will_cell_be_alive_in_next_generation(input_grid[x][y], num_alive_neighbours)
-#                 output_grid[x][y] = is_alive
+    def determine_next_grid(self, input_grid):
+        """
+        Given any input grid, determine the next state of the grid.
+        """
+        max_x = len(input_grid[0])
+        max_y = len(input_grid)
+        output_grid = [[0 for output_x in range(max_x)] for output_y in range(max_y)]
+        for x in range(0, max_x):
+            for y in range(0, max_y):
+                num_alive_neighbours = self.count_alive_neighbours(input_grid, (x, y))
+                is_alive = self.will_cell_be_alive_in_next_generation(input_grid[y][x], num_alive_neighbours)
+                if is_alive:
+                    output_grid[y][x] = 1
+        return output_grid

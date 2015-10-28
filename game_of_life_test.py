@@ -97,19 +97,47 @@ class LiveNeighbourCounterTests(unittest.TestCase):
         grid = [[1]]
         self.assertEquals(8, self.gol.count_alive_neighbours(grid, (0, 0)))
 
-# Fix problem with 1x1 grid neighbour counting before worrying about this
-# class DetermineNextGridTests(unittest.TestCase):
-#     gol = GameOfLife()
-#
-#     def test_single_alive_cell_grid_returns_identical_grid(self):
-#         input_grid = [[1]]
-#         actual_grid = self.gol.determine_next_grid(input_grid)
-#         self.assertEqual(input_grid, actual_grid)
-#
-#     def test_single_dead_cell_grid_returns_identical_grid(self):
-#         input_grid = [[0]]
-#         actual_grid = self.gol.determine_next_grid(input_grid)
-#         self.assertEqual(input_grid, actual_grid)
+
+class DetermineNextGridTests(unittest.TestCase):
+    """
+    Many of the example grids used here can be found at https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life
+    """
+    gol = GameOfLife()
+
+
+    # Single-cell grids
+    def test_single_alive_cell_grid_returns_single_dead_cell_grid(self):
+        input_grid = [[1]]
+        expected_grid = [[0]]
+        actual_grid = self.gol.determine_next_grid(input_grid)
+        self.assertEqual(expected_grid, actual_grid)
+
+    def test_single_dead_cell_grid_returns_identical_grid(self):
+        input_grid = [[0]]
+        expected_grid = input_grid
+        actual_grid = self.gol.determine_next_grid(input_grid)
+        self.assertEqual(expected_grid, actual_grid)
+
+    # Still lifes
+    def test_block_grid_returns_block_grid(self):
+        input_grid = [[0,0,0,0],
+                      [0,1,1,0],
+                      [0,1,1,0],
+                      [0,0,0,0]]
+        expected_grid = input_grid
+        actual_grid = self.gol.determine_next_grid(input_grid)
+        self.assertEqual(expected_grid, actual_grid)
+
+    def test_beehive_grid_returns_beehive_grid(self):
+        input_grid = [[0,0,0,0,0,0],
+                      [0,0,1,1,0,0],
+                      [0,1,0,0,1,0],
+                      [0,0,1,1,0,0],
+                      [0,0,0,0,0,0]]
+        expected_grid = input_grid
+        actual_grid = self.gol.determine_next_grid(input_grid)
+        self.assertEqual(expected_grid, actual_grid)
+
 
 
 if __name__ == '__main__':
