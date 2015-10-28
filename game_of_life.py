@@ -39,7 +39,6 @@ class GameOfLife(object):
             if y == -1:
                 y = max_y - 1
 
-            print x, y
             return x, y
 
         x, y = coordinates
