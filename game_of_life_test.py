@@ -79,7 +79,7 @@ class LiveNeighbourCounterTests(unittest.TestCase):
         self.assertEquals(0, self.gol.count_alive_neighbours(grid, (2,1)))
         self.assertEquals(0, self.gol.count_alive_neighbours(grid, (2,2)))
 
-    def test_zero_zero_has_eight_live_neighbours(self):
+    def test_every_cell_of_fully_live_grid_has_eight_live_neighbours(self):
         grid = [[1,1,1],
                 [1,1,1],
                 [1,1,1]]
