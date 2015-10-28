@@ -138,6 +138,26 @@ class DetermineNextGridTests(unittest.TestCase):
         actual_grid = self.gol.determine_next_grid(input_grid)
         self.assertEqual(expected_grid, actual_grid)
 
+    def test_loaf_grid_returns_loaf_grid(self):
+        input_grid = [[0,0,0,0,0,0],
+                      [0,0,1,1,0,0],
+                      [0,1,0,0,1,0],
+                      [0,0,1,0,1,0],
+                      [0,0,0,1,0,0],
+                      [0,0,0,0,0,0]]
+        expected_grid = input_grid
+        actual_grid = self.gol.determine_next_grid(input_grid)
+        self.assertEqual(expected_grid, actual_grid)
+
+    def test_boat_grid_returns_boat_grid(self):
+        input_grid = [[0,0,0,0,0],
+                      [0,1,1,0,0],
+                      [0,1,0,1,0],
+                      [0,0,1,0,0],
+                      [0,0,0,0,0]]
+        expected_grid = input_grid
+        actual_grid = self.gol.determine_next_grid(input_grid)
+        self.assertEqual(expected_grid, actual_grid)
 
 
 if __name__ == '__main__':
