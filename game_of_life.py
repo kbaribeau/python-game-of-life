@@ -66,3 +66,24 @@ class GameOfLife(object):
                 if is_alive:
                     output_grid[y][x] = 1
         return output_grid
+
+if __name__=='__main__':
+  import time
+  gol = GameOfLife()
+  # http://www.conwaylife.com/wiki/R-pentomino
+  grid = [[0,0,0,0,0,0,0,0,0,0],
+          [0,0,0,0,0,0,0,0,0,0],
+          [0,0,0,0,0,0,0,0,0,0],
+          [0,0,0,0,0,0,0,0,0,0],
+          [0,0,0,0,1,1,0,0,0,0],
+          [0,0,0,1,1,0,0,0,0,0],
+          [0,0,0,0,1,0,0,0,0,0],
+          [0,0,0,0,0,0,0,0,0,0],
+          [0,0,0,0,0,0,0,0,0,0],
+          [0,0,0,0,0,0,0,0,0,0]]
+  while True:
+    for line in grid:
+      print line
+    print ''
+    grid = gol.determine_next_grid(grid)
+    time.sleep(1)
